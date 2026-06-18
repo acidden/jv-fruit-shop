@@ -8,15 +8,15 @@ public class PurchaseOperationHandler implements OperationHandler {
     public void handle(FruitTransaction transaction) {
         String fruit = transaction.getFruit();
         int quantityToBuy = transaction.getQuantity();
-        if (!Storage.fruits.containsKey(fruit)) {
+        if (!Storage.contains(fruit)) {
             throw new RuntimeException("Product not found in storage: " + fruit);
         }
-        int currentQuantity = Storage.fruits.get(fruit);
+        int currentQuantity = Storage.getQuantity(fruit);
         if (currentQuantity < quantityToBuy) {
             throw new RuntimeException("Not enough " + fruit + " in storage. Available: "
                     + currentQuantity + ", requested: " + quantityToBuy);
         }
-        Storage.fruits.put(fruit, currentQuantity - quantityToBuy);
+        Storage.addOrUpdate(fruit, currentQuantity - quantityToBuy);
     }
 }
 

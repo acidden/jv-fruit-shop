@@ -6,10 +6,6 @@ import core.basesyntax.service.FruitTransaction;
 public class ReturnOperationHandler implements OperationHandler {
     @Override
     public void handle(FruitTransaction transaction) {
-        Storage.fruits.merge(
-                transaction.getFruit(),
-                transaction.getQuantity(),
-                Integer::sum
-        );
+        Storage.merge(transaction.getFruit(), transaction.getQuantity());
     }
 }

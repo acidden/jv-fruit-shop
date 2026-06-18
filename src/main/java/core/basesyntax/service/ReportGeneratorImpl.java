@@ -9,7 +9,7 @@ public class ReportGeneratorImpl implements ReportGenerator {
 
     @Override
     public String getReport() {
-        String reportData = Storage.fruits.entrySet().stream()
+        String reportData = Storage.getAllEntries().entrySet().stream()
                 .map(entry -> entry.getKey()
                         + COMMA_SEPARATOR + entry.getValue())
                 .collect(Collectors.joining(System.lineSeparator()));

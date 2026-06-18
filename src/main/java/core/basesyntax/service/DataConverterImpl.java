@@ -26,14 +26,14 @@ public class DataConverterImpl implements DataConverter {
     private FruitTransaction parseLine(String line) {
         String[] parsedData = line.split(COMMA_SEPARATOR);
         if (parsedData.length != EXPECTED_ARRAY_LENGTH) {
-            throw new RuntimeException("Invalid csv line format" + line);
+            throw new RuntimeException("Invalid csv line format " + line);
         }
         FruitTransaction.Operation operation = FruitTransaction.Operation.fromCode(
                 parsedData[OPERATION_INDEX].trim());
         String fruit = parsedData[FRUIT_INDEX].trim();
         int quantity = Integer.parseInt(parsedData[QUANTITY_INDEX].trim());
         if (quantity < 0) {
-            throw new RuntimeException("Quantity can not be negative" + line);
+            throw new RuntimeException("Quantity can not be negative: " + line);
         }
         return new FruitTransaction(operation, fruit, quantity);
     }
